@@ -1,0 +1,193 @@
+{
+    "repeat-1":[
+        {
+            "kernel":7,
+            "filters":64,
+            "strides":2,
+            "padding":3,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":0,
+            "filters":0,
+            "strides":0,
+            "padding":0,
+            "iteration":0,
+            "pooling": 1
+        },
+
+        {
+            "kernel":3,
+            "filters":192,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":0,
+            "filters":0,
+            "strides":0,
+            "padding":0,
+            "iteration":0,
+            "pooling": 1
+        },
+
+        {
+            "kernel":1,
+            "filters":128,
+            "strides":1,
+            "padding":0,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":3,
+            "filters":256,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":1,
+            "filters":256,
+            "strides":1,
+            "padding":0,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":3,
+            "filters":512,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":0,
+            "filters":0,
+            "strides":0,
+            "padding":0,
+            "iteration":0,
+            "pooling": 1
+        }
+        
+    ],
+
+    "repeat-4":[
+        {
+            "kernel":1,
+            "filters":256,
+            "strides":1,
+            "padding":0,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":3,
+            "filters":512,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        }
+        
+    ],
+
+    "rep-1":[
+        {
+            "kernel":1,
+            "filters":512,
+            "strides":1,
+            "padding":0,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":3,
+            "filters":1024,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":0,
+            "filters":0,
+            "strides":0,
+            "padding":0,
+            "iteration":0,
+            "pooling": 1
+        }
+
+    ],
+
+    "twice-2":[
+        {
+            "kernel":1,
+            "filters":512,
+            "strides":1,
+            "padding":0,
+            "iteration":1,
+            "pooling": 0
+        },
+
+        {
+            "kernel":3,
+            "filters":1024,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        }
+    ],
+
+    "once-1":[
+        {
+            "kernel":3,
+            "filters":1024,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+        {
+            "kernel":3,
+            "filters":1024,
+            "strides":2,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+        {
+            "kernel":3,
+            "filters":1024,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        },
+        {
+            "kernel":3,
+            "filters":1024,
+            "strides":1,
+            "padding":1,
+            "iteration":1,
+            "pooling": 0
+        }
+        
+    ]
+
+}
