@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 def iou(true, pred):
-  '''Returns the Intersection Over Union Score between [0,1] for two bounding boxes. The returned type will be similar 
+    '''Returns the Intersection Over Union Score between [0,1] for two bounding boxes. The returned type will be similar 
      to the inputs; tensor/numpy.ndarray. 
      
      Parameters:
@@ -43,24 +43,25 @@ def iou(true, pred):
 
     return iou
   
-  def loss(target, predictions):
+def loss(target, predictions):
+    
     '''Returns a scalar
     
     The loss have been calculated as mentioned in the paper, You Only Look Once.
     '''
-    targetBbox = target[:,:,:,21:]
-    bbox1 = predictions[:,:,:,21:25]
-    bbox2 = predictions[:,:,:,26:]
-    targetClasses = target[:,:,:,:20]
-    predictedClasses = target[:,:,:,:20]
+    targetBbox = target[...,21:]
+    bbox1 = predictions[...,21:25]
+    bbox2 = predictions[...,26:]
+    targetClasses = target[...,:20]
+    predictedClasses = target[...,:20]
 
-    pObject = target[:,:,:,20]
+    pObject = target[...,20]
 
     iou1, iou2 = iou(targetBbox, bbox1), iou(targetBbox, bbox2)
     iou1, iou2 = tf.expand_dims(iou1,axis=-1), tf.expand_dims(iou2,axis=-1)
     concatenated = tf.concat([iou1,iou2],axis = -1)
     print('Concatenated', concatenated.shape)
-    maxIou = tf.argmax(concatenated, axis = -1).numpy()
+    maxIou = tf.argmax(concatenated, axis = -1)
     print('MaxIou', maxIou.shape)
     #maxIou = tf.cast(tf.expand_dims(maxIou, axis = -1),tf.float32)
     maxIou = tf.cast(maxIou,tf.float32)
@@ -79,9 +80,9 @@ def iou(true, pred):
     # Points Loss                          #
     ########################################
     
-    hWLoss = pObject*(tf.keras.losses.mse(tf.sqrt(tf.abs(targetBbox[:,:,:,-2])), tf.sqrt(tf.abs(responsibleBox[:,:,:,-2])))
+    hWLoss = pObject*(tf.keras.losses.mse(tf.sqrt(tf.abs(targetBbox[...,-2])), tf.sqrt(tf.abs(responsibleBox[...,-2])))
                      
-                     + tf.keras.losses.mse(tf.sqrt(tf.abs(targetBbox[:,:,:,-1])), tf.sqrt(tf.abs(responsibleBox[:,:,:,-1]))))
+                     + tf.keras.losses.mse(tf.sqrt(tf.abs(targetBbox[...,-1])), tf.sqrt(tf.abs(responsibleBox[...,-1]))))
     
     
     
@@ -91,8 +92,8 @@ def iou(true, pred):
     # for identifying the object           #
     ########################################
     
-    bbox1 = predictions[:,:,:,20]
-    bbox2 = predictions[:,:,:,25]
+    bbox1 = predictions[...,20]
+    bbox2 = predictions[...,25]
     
     responsibleBox = (1-maxIou)*bbox1 + maxIou*bbox2
     
@@ -105,18 +106,19 @@ def iou(true, pred):
     ########################################
     
     
-    minIou = tf.argmin(concatenated, axis = -1).numpy()
-    minIou = tf.cast(tf.expand_dims(minIou, axis = -1),tf.float32)
+    minIou = tf.argmin(concatenated, axis = -1)
+#     minIou = tf.cast(tf.expand_dims(minIou, axis = -1),tf.float32)
+    minIou = tf.cast(minIou, tf.float32)
     
-    bbox1 = predictions[:,:,:,20]
-    bbox2 = predictions[:,:,:,25]
+    bbox1 = predictions[...,20]
+    bbox2 = predictions[...,25]
     
     
     responsibleBox = (1-minIou)*bbox1 + minIou*bbox2
 #     print(responsibleBox[:,:,0].shape)
 #     print(target.shape)
     
-    pcNoObjectLoss = (1-pObject)*tf.keras.losses.mse(target[:,:,:,20], responsibleBox[:,:,:,0])
+    pcNoObjectLoss = (1-pObject)*tf.keras.losses.mse(target[...,20], responsibleBox[...,0])
     
     ########################################
     # Loss 4: Class Score Loss for each cell
@@ -134,3 +136,4 @@ def iou(true, pred):
     
     
     
+
