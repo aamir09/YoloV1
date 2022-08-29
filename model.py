@@ -1,13 +1,19 @@
 import tensorflow as tf 
-from convLayer import Convolve2D
+from YoloV1.convLayer import Convolve2D
 import json
 
 tf.keras.backend.clear_session()
-with open('./architecture.json','r') as f:
-    arc = json.load(f)
+# with open('./YoloV1/architecture.json','r') as f:
+#     arc = json.load(f)
     
     
-def buildModel(arc):
+def buildModel():
+    with open('./YoloV1/architecture.json','r') as f:
+        arc = json.load(f)
+        
+        
+        
+      
     inp = tf.keras.Input((448,448,3))
 
     firstLayer = True
@@ -50,6 +56,7 @@ def buildModel(arc):
     
     return model
 
-model = buildModel(arc)
+# model = buildModel()
 
-print(model.summary())
+# print(model.summary())
+
